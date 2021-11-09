@@ -1,18 +1,28 @@
 import React from "react";
 import styled from "styled-components";
 import DisplaySingleItem from "./DisplaySingleItem";
+import { filterByArray } from "../utils/functions";
 
-function DisplayItems() {
+function DisplayItems({ items }) {
+  const uniqueCategories = [...new Set(items.map((item) => item.category))];
+
   return (
     <Wrapper>
-      <div className="category">
-        <h3 className="category__title">Category</h3>
-      </div>
-      <div className="items">
-        {["avocado", "banana", "carrots", "banana", "carrots"].map((item) => {
-          return <DisplaySingleItem name={item} />;
-        })}
-      </div>
+      {uniqueCategories.map((category, index) => {
+        return (
+          <div key={index}>
+            <div className="category">
+              <h3 className="category__title">{category}</h3>
+            </div>
+            <div className="items">
+              {filterByArray(items, category).map((item) => {
+                const { name, _id } = item;
+                return <DisplaySingleItem key={_id} name={name} />;
+              })}
+            </div>
+          </div>
+        );
+      })}
     </Wrapper>
   );
 }

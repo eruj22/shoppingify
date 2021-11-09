@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import sauce from "../assets/sauce.svg";
 import { BsFillPencilFill } from "react-icons/bs";
-import AddNewItem from "./AddNewItem";
-import ShoppingList from "./ShoppingList";
+import AddNewItem from "../components/AddNewItem";
+import ShoppingList from "../components/ShoppingList";
 
 function RightPreview() {
   const [showAddItem, setShowAddItem] = useState(false);

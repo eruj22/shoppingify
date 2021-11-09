@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import Navigation from "./components/Navigation";
-import RightPreview from "./components/RightPreview";
+import Navigation from "./pages/Navigation";
+import RightPreview from "./pages/RightPreview";
 import styled from "styled-components";
 import { GlobalStyles } from "./utils/global";
 

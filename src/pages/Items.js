@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { AiOutlineSearch } from "react-icons/ai";
-import DisplayItems from "./DisplayItems";
+import DisplayItems from "../components/DisplayItems";
+import { useAppContext } from "../context/context";
 
 function Items() {
+  const { items } = useAppContext();
+  const [searchQuery, setSearchQuery] = useState("");
+
+  let filteredItems = items;
+  if (searchQuery !== "") {
+    filteredItems = items.filter((item) => {
+      const { name } = item;
+      return name.toLowerCase().includes(searchQuery.toLowerCase());
+    });
+  }
+
   return (
     <Wrapper>
       <header className="header">
@@ -18,12 +30,14 @@ function Items() {
             type="search"
             placeholder="search item"
             aria-label="search item"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
       </header>
 
       <main className="main">
-        <DisplayItems />
+        <DisplayItems items={filteredItems} />
       </main>
     </Wrapper>
   );
@@ -32,6 +46,7 @@ function Items() {
 const Wrapper = styled.main`
   padding: 2rem 5rem;
   background-color: #e8f7fc;
+  overflow: auto;
 
   .header {
     display: flex;
