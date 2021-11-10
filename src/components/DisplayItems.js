@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import DisplaySingleItem from "./DisplaySingleItem";
-import { filterByArray } from "../utils/functions";
+import { filterByCategory, getUniqueCategories } from "../utils/functions";
 
 function DisplayItems({ items }) {
-  const uniqueCategories = [...new Set(items.map((item) => item.category))];
+  const uniqueCategories = getUniqueCategories(items);
 
   return (
     <Wrapper>
@@ -15,9 +15,9 @@ function DisplayItems({ items }) {
               <h3 className="category__title">{category}</h3>
             </div>
             <div className="items">
-              {filterByArray(items, category).map((item) => {
-                const { name, _id } = item;
-                return <DisplaySingleItem key={_id} name={name} />;
+              {filterByCategory(items, category).map((item) => {
+                const { _id } = item;
+                return <DisplaySingleItem key={_id} item={item} />;
               })}
             </div>
           </div>

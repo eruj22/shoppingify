@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import sauce from "../assets/sauce.svg";
-import { BsFillPencilFill } from "react-icons/bs";
 import AddNewItem from "../components/AddNewItem";
 import ShoppingList from "../components/ShoppingList";
 
@@ -29,26 +28,7 @@ function RightPreview() {
         </div>
       </div>
 
-      <div className="list">
-        <header className="list__header">
-          <h2 className="list__title">Shopping List</h2>
-          <BsFillPencilFill className="list__editIcon" />
-        </header>
-        <div className="list__main">
-          <ShoppingList />
-        </div>
-      </div>
-
-      <div className="listName">
-        <div className="listName__container">
-          <input
-            type="text"
-            className="listName__input"
-            placeholder="Enter a name"
-          />
-          <button className="listName__button">Save</button>
-        </div>
-      </div>
+      <ShoppingList />
     </Wrapper>
   );
 }
@@ -57,6 +37,7 @@ const Wrapper = styled.aside`
   background-color: beige;
   padding: 2rem;
   min-width: 330px;
+  /* TODO: constrain container so that you can see overflown items */
   overflow: auto;
 
   .addItem {
@@ -75,53 +56,6 @@ const Wrapper = styled.aside`
     &__button {
       padding: 0.5rem 1rem;
       border-radius: 0.5rem;
-    }
-  }
-
-  .list {
-    &__header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    &__title {
-      margin-right: 1rem;
-    }
-
-    &__editIcon {
-      cursor: pointer;
-    }
-  }
-
-  .listName {
-    background-color: #fff;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    padding: 1.5rem 2rem;
-    min-width: 330px;
-
-    &__container {
-      position: relative;
-    }
-
-    &__input {
-      width: 100%;
-      height: 50px;
-      padding: 0 1rem;
-      border: 2px solid orange;
-    }
-
-    &__button {
-      position: absolute;
-      top: 0;
-      right: 0;
-      height: 50px;
-      padding: 0 1rem;
-      background-color: orange;
-      border-radius: 0.5rem;
-      color: #fff;
     }
   }
 `;
