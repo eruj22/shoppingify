@@ -3,30 +3,42 @@ import styled from "styled-components";
 import { AiOutlinePlus } from "react-icons/ai";
 import { AiOutlineMinus } from "react-icons/ai";
 import { FiTrash2 } from "react-icons/fi";
+import { useListContext } from "../context/shopping_list_context";
 
-function ShoppingListItem() {
+function ShoppingListItem({ item, canUpdateList }) {
+  const { toggleAmount, removeItem } = useListContext();
   const [isBtnClicked, setIsBtnClicked] = useState(false);
+  const { name, amount } = item;
+
+  const increase = () => {
+    toggleAmount(name, "inc");
+  };
+
+  const decrease = () => {
+    toggleAmount(name, "dec");
+  };
 
   return (
     <Wrapper>
-      <span className="name">Item</span>
+      <span className="name">{name}</span>
       <button
         className={isBtnClicked ? "btn--hide" : "btn btn--transparent"}
         onClick={() => setIsBtnClicked(true)}
+        disabled={!canUpdateList}
       >
-        1 pcs
+        {amount} pcs
       </button>
       <div className={isBtnClicked ? "buttons" : "buttons--hide"}>
-        <button className="btnTrash">
+        <button className="btnTrash" onClick={() => removeItem(name)}>
           <FiTrash2 />
         </button>
-        <button className="btnMinus">
+        <button className="btnMinus" onClick={decrease}>
           <AiOutlineMinus />
         </button>
         <button className={"btn"} onClick={() => setIsBtnClicked(false)}>
-          1 pcs
+          {amount} pcs
         </button>
-        <button className="btnPlus">
+        <button className="btnPlus" onClick={increase}>
           <AiOutlinePlus />
         </button>
       </div>
@@ -61,6 +73,7 @@ const Wrapper = styled.div`
   }
 
   .buttons {
+    z-index: 3;
     background-color: #fff;
     border-radius: 0.5rem;
 

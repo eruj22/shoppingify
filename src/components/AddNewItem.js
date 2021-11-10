@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import BtnPrimary from "./BtnPrimary";
+import BtnSecondary from "./BtnSecondary";
+import { useAppContext } from "../context/context";
+import { getUniqueCategories } from "../utils/functions";
 
 function AddNewItem({ setShowAddItem }) {
+  const { items } = useAppContext();
+  const uniqueCategories = getUniqueCategories(items);
+
   const [addNewItem, setAddNewItem] = useState({
     name: "",
     note: "",
@@ -25,11 +32,10 @@ function AddNewItem({ setShowAddItem }) {
     // TODO: input validation for the user
     // TODO: on add item reload display of items
   };
-
+  // console.log(filterByCategory(items, items.category));
   return (
     <Wrapper>
       <h2 className="title">Add a new item</h2>
-
       <form className="form">
         <label className="form__label" htmlFor="name">
           Name
@@ -44,6 +50,7 @@ function AddNewItem({ setShowAddItem }) {
             setAddNewItem({ ...addNewItem, name: e.target.value })
           }
         />
+
         <label className="form__label" htmlFor="note">
           Note (optional)
         </label>
@@ -57,6 +64,7 @@ function AddNewItem({ setShowAddItem }) {
             setAddNewItem({ ...addNewItem, note: e.target.value })
           }
         />
+
         <label className="form__label" htmlFor="image">
           Image (optional)
         </label>
@@ -70,30 +78,30 @@ function AddNewItem({ setShowAddItem }) {
             setAddNewItem({ ...addNewItem, image: e.target.value })
           }
         />
+
         <label htmlFor="category" className="form__label">
           Category
         </label>
-        {/* TODO: the right select options, take them dynamically from the db */}
-        <select
+        <input
           name="category"
-          id="category"
+          type="text"
           className="form__input"
+          list="category"
           value={addNewItem.category}
           onChange={(e) =>
             setAddNewItem({ ...addNewItem, category: e.target.value })
           }
-        >
-          {/* TODO: display unique categories */}
-        </select>
+        />
+        <datalist id="category">
+          {uniqueCategories.map((category, index) => {
+            return <option key={index}>{category}</option>;
+          })}
+        </datalist>
       </form>
 
       <div className="buttons">
-        <button className="btn" onClick={() => setShowAddItem(false)}>
-          cancel
-        </button>
-        <button className="btn btn--save" type="submit" onClick={handleSubmit}>
-          save
-        </button>
+        <BtnSecondary text={"cancel"} onClick={() => setShowAddItem(false)} />
+        <BtnPrimary text={"save"} onClick={handleSubmit} />
       </div>
     </Wrapper>
   );
@@ -129,17 +137,6 @@ const Wrapper = styled.aside`
     display: flex;
     justify-content: center;
     margin-top: auto;
-  }
-
-  .btn {
-    border-radius: 0.5rem;
-    padding: 1rem 1.4rem;
-
-    &--save {
-      background-color: orange;
-      color: #fff;
-      margin-left: 1rem;
-    }
   }
 `;
 

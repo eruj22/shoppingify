@@ -1,12 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 import { AiOutlinePlus } from "react-icons/ai";
+import { useListContext } from "../context/shopping_list_context";
 
-function DisplaySingleItem({ name }) {
+function DisplaySingleItem({ item }) {
+  const { addToList } = useListContext();
+  const { name, note, image, category } = item;
   return (
     <Wrapper>
       <span className="name">{name}</span>
-      <AiOutlinePlus className="icon" />
+      <button onClick={() => addToList(name, note, image, category)}>
+        <AiOutlinePlus className="icon" />
+      </button>
     </Wrapper>
   );
 }
@@ -21,10 +26,6 @@ const Wrapper = styled.div`
 
   .name {
     font-weight: bold;
-  }
-
-  .icon {
-    cursor: pointer;
   }
 `;
 

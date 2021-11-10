@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useReducer } from "react";
-import reducer from "../reducer/reducer";
+import reducer from "../reducers/reducer";
 import axios from "axios";
 
 const initialState = {

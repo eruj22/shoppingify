@@ -11,6 +11,7 @@ export const GlobalStyles = createGlobalStyle`
     margin: 0;
     color: #333;
     font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
   }
 
 
@@ -22,7 +23,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   input,textarea{
-    /* make font style the same */
+    font-family: 'Montserrat', sans-serif;
   }
 
   a {

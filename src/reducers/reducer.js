@@ -17,6 +17,10 @@ const reducer = (state, action) => {
     return { ...state, itemsLoading: false, items: action.payload };
   }
 
+  if (action.type === "ADD_ITEM_TO_LIST") {
+    return { ...state };
+  }
+
   return state;
 };
 
