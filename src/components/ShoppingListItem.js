@@ -20,7 +20,7 @@ function ShoppingListItem({ item, canUpdateList }) {
 
   return (
     <Wrapper>
-      <span className="name">{name}</span>
+      <span className={isBtnClicked ? "name margin-top" : "name"}>{name}</span>
       <button
         className={isBtnClicked ? "btn--hide" : "btn btn--transparent"}
         onClick={() => setIsBtnClicked(true)}
@@ -47,6 +47,7 @@ function ShoppingListItem({ item, canUpdateList }) {
 }
 
 const Wrapper = styled.div`
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -73,6 +74,9 @@ const Wrapper = styled.div`
   }
 
   .buttons {
+    position: absolute;
+    top: 0.5rem;
+    right: 0;
     z-index: 3;
     background-color: #fff;
     border-radius: 0.5rem;
@@ -85,7 +89,7 @@ const Wrapper = styled.div`
   .btnPlus,
   .btnMinus {
     color: orange;
-    margin: 0 0.5rem;
+    padding: 0.5rem;
   }
 
   .btnTrash {
@@ -94,6 +98,10 @@ const Wrapper = styled.div`
     color: #fff;
     border-radius: 0.5rem;
     border: 2px solid orange;
+  }
+
+  .margin-top {
+    margin: 0.3rem 0 0.4rem;
   }
 `;
 
