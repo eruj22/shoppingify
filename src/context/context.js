@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useReducer } from "react";
+import React, { useContext, useEffect, useReducer, useState } from "react";
 import reducer from "../reducers/reducer";
 import axios from "axios";
 
@@ -13,6 +13,7 @@ const AppContext = React.createContext();
 
 export const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [fetchAgain, setFetchAgain] = useState(false);
 
   const openSidebar = () => {
     dispatch({ type: "OPEN_SIDEBAR" });
@@ -20,6 +21,10 @@ export const AppProvider = ({ children }) => {
 
   const closeSidebar = () => {
     dispatch({ type: "CLOSE_SIDEBAR" });
+  };
+
+  const againFetchItems = () => {
+    setFetchAgain(!fetchAgain);
   };
 
   const fetchItems = async (url) => {
@@ -35,10 +40,12 @@ export const AppProvider = ({ children }) => {
 
   useEffect(() => {
     fetchItems(process.env.REACT_APP_API_URL);
-  }, []);
+  }, [fetchAgain]);
 
   return (
-    <AppContext.Provider value={{ ...state, openSidebar, closeSidebar }}>
+    <AppContext.Provider
+      value={{ ...state, openSidebar, closeSidebar, againFetchItems }}
+    >
       {children}
     </AppContext.Provider>
   );

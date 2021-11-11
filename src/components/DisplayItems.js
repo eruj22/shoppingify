@@ -35,8 +35,32 @@ const Wrapper = styled.div`
   }
   .items {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 1rem;
+  }
+
+  @media (max-width: 1920px) {
+    .items {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  @media (max-width: 1600px) {
+    .items {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 900px) {
+    .items {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 750px) {
+    .items {
+      grid-template-columns: 1fr;
+    }
   }
 `;
 

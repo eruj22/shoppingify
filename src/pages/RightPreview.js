@@ -37,7 +37,7 @@ const Wrapper = styled.aside`
   background-color: beige;
   padding: 2rem;
   min-width: 330px;
-  /* TODO: constrain container so that you can see overflown items */
+  width: 20vw;
   overflow: auto;
 
   .addItem {
