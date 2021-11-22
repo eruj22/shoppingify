@@ -6,12 +6,17 @@ import { useListContext } from "../context/shopping_list_context";
 function DisplaySingleItem({ item }) {
   const { addToList } = useListContext();
   const { name, note, image, category } = item;
+
   return (
     <Wrapper>
       <span className="name">{name}</span>
-      <button onClick={() => addToList(name, note, image, category)}>
-        <AiOutlinePlus className="icon" />
-      </button>
+      {item.amount ? (
+        <span className="amount">{item.amount} pcs</span>
+      ) : (
+        <button onClick={() => addToList(name, note, image, category)}>
+          <AiOutlinePlus className="icon" />
+        </button>
+      )}
     </Wrapper>
   );
 }
@@ -26,6 +31,12 @@ const Wrapper = styled.div`
 
   .name {
     font-weight: bold;
+  }
+
+  .amount {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: orange;
   }
 `;
 
