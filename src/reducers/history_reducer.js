@@ -19,6 +19,13 @@ const reducer = (state, action) => {
     return { ...state };
   }
 
+  if (action.type === "HISTORY_DELETE_LIST") {
+    const tempList = state.historyLists.filter(
+      (list) => list._id !== action.payload
+    );
+    return { ...state, historyLists: tempList };
+  }
+
   return state;
 };
 

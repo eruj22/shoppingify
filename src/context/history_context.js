@@ -36,6 +36,14 @@ export const HistoryProvider = ({ children }) => {
     dispatch({ type: "HISTORY_CHANGE_STATUS", payload: { id, status } });
   };
 
+  const deleteList = async (id) => {
+    await axios
+      .delete(`${process.env.REACT_APP_API_URL_HISTORY}${id}`)
+      .then((res) => console.log(res.status))
+      .catch((error) => console.log(error));
+    dispatch({ type: "HISTORY_DELETE_LIST", payload: id });
+  };
+
   const againFetchHistoryLists = () => {
     setFetchAgain(!fetchAgain);
     dispatch({ type: "FETCH_AGAIN" });
@@ -47,7 +55,7 @@ export const HistoryProvider = ({ children }) => {
 
   return (
     <HistoryContext.Provider
-      value={{ ...state, changeStatus, againFetchHistoryLists }}
+      value={{ ...state, changeStatus, againFetchHistoryLists, deleteList }}
     >
       {children}
     </HistoryContext.Provider>

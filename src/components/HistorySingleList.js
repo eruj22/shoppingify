@@ -1,14 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 import { BsArrowLeft } from "react-icons/bs";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { useHistoryContext } from "../context/history_context";
 import DisplayDate from "./DisplayDate";
 import DisplayItems from "./DisplayItems";
 import { AiFillCaretDown } from "react-icons/ai";
+import BtnSecondary from "./BtnSecondary";
 
 function HistorySingleList() {
-  const { historyLists, historyLoading, changeStatus } = useHistoryContext();
+  const { historyLists, historyLoading, changeStatus, deleteList } =
+    useHistoryContext();
+  const navigate = useNavigate();
   const { id } = useParams();
 
   const singleList = historyLists.find((list) => list._id === id);
@@ -23,6 +26,11 @@ function HistorySingleList() {
     changeStatus(id, status);
   };
 
+  const handleDelete = () => {
+    deleteList(id);
+    navigate("/history");
+  };
+
   return (
     <Wrapper>
       <Link to="/history" className="back">
@@ -31,7 +39,10 @@ function HistorySingleList() {
       </Link>
 
       <div className="flex">
-        <h2>{name}</h2>
+        <h2 className="name">{name}</h2>
+
+        <BtnSecondary text="delete list" onClick={handleDelete} />
+
         <div className="status">
           <AiFillCaretDown className="status__icon" />
           <select
@@ -58,6 +69,10 @@ const Wrapper = styled.main`
   background-color: #e8f7fc;
   overflow: auto;
 
+  .name {
+    margin-right: auto;
+  }
+
   .back {
     display: flex;
     align-items: center;
@@ -72,7 +87,6 @@ const Wrapper = styled.main`
 
   .flex {
     display: flex;
-    justify-content: space-between;
     align-items: center;
   }
 
@@ -83,6 +97,7 @@ const Wrapper = styled.main`
       position: absolute;
       top: 0.5rem;
       right: 0.5rem;
+      pointer-events: none;
     }
 
     &__select {
