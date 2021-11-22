@@ -23,3 +23,15 @@ export const notifySuccess = (text) =>
       icon: "👏",
     }
   );
+
+export const convertDate = (date) => {
+  const newDate = new Date(date);
+
+  const dayNumber = newDate.getDay();
+
+  const days = ["Sun", "Mon", "Tues", "Wed", "Thu", "Fri", "Sat"];
+
+  return `${days[dayNumber]} ${newDate
+    .toLocaleDateString("en-GB")
+    .replaceAll("/", ".")}`;
+};

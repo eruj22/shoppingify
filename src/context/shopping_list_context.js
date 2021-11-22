@@ -30,6 +30,7 @@ export const ListProvider = ({ children }) => {
   };
 
   const clearList = () => {
+    localStorage.removeItem("shoppingList");
     dispatch({ type: "CLEAR_LIST" });
   };
 

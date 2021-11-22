@@ -6,6 +6,7 @@ function BtnSecondary({ text, onClick }) {
 }
 
 const Wrapper = styled.button`
+  background-color: transparent;
   border-radius: 0.5rem;
   padding: 1rem 1.4rem;
 `;
