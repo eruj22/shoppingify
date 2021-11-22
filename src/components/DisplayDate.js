@@ -13,7 +13,7 @@ function DisplayDate({ date }) {
 }
 
 const Wrapper = styled.div`
-  margin-left: auto;
+  margin: 0 0.5rem 0 auto;
   display: flex;
   align-items: center;
   color: gray;

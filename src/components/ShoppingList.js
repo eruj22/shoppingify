@@ -10,9 +10,11 @@ import BtnSecondary from "./BtnSecondary";
 import axios from "axios";
 import { Toaster } from "react-hot-toast";
 import { notifySuccess } from "../utils/functions";
+import { useHistoryContext } from "../context/history_context";
 
 function ShoppingList() {
   const { shoppingList, clearList, addToList } = useListContext();
+  const { againFetchHistoryLists } = useHistoryContext();
   const [shoppingListName, setShoppingListName] = useState("Shopping List");
   const [canUpdateList, setCanUpdateList] = useState(false);
   const [shoppingListError, setShoppingListError] = useState({});
@@ -45,11 +47,12 @@ function ShoppingList() {
 
     axios
       .post(process.env.REACT_APP_API_URL_HISTORY, history)
-      .then((res) => console.log(res))
+      .then(() => {
+        againFetchHistoryLists();
+        notifySuccess("Successfully saved shopping list");
+        clearList();
+      })
       .catch((err) => console.log(err));
-
-    notifySuccess("Successfully saved shopping list");
-    clearList();
   };
 
   useEffect(() => {

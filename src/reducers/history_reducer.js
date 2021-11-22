@@ -15,6 +15,10 @@ const reducer = (state, action) => {
     return { ...state };
   }
 
+  if (action.type === "FETCH_AGAIN") {
+    return { ...state };
+  }
+
   return state;
 };
 

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useReducer } from "react";
+import React, { useContext, useEffect, useReducer, useState } from "react";
 import reducer from "../reducers/history_reducer";
 import axios from "axios";
 
@@ -11,6 +11,7 @@ const HistoryContext = React.createContext();
 
 export const HistoryProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [fetchAgain, setFetchAgain] = useState(false);
 
   const fetchHistory = async (url) => {
     dispatch({ type: "GET_HISTORY_LOADING" });
@@ -35,12 +36,19 @@ export const HistoryProvider = ({ children }) => {
     dispatch({ type: "HISTORY_CHANGE_STATUS", payload: { id, status } });
   };
 
+  const againFetchHistoryLists = () => {
+    setFetchAgain(!fetchAgain);
+    dispatch({ type: "FETCH_AGAIN" });
+  };
+
   useEffect(() => {
     fetchHistory(process.env.REACT_APP_API_URL_HISTORY);
-  }, []);
+  }, [fetchAgain]);
 
   return (
-    <HistoryContext.Provider value={{ ...state, changeStatus }}>
+    <HistoryContext.Provider
+      value={{ ...state, changeStatus, againFetchHistoryLists }}
+    >
       {children}
     </HistoryContext.Provider>
   );

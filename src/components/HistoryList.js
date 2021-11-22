@@ -28,13 +28,15 @@ const Wrapper = styled.div`
   background-color: #fff;
   border-radius: 0.5rem;
   padding: 1rem;
-  margin: 2rem 0;
+  margin: 1rem 0;
 
   h2 {
     margin: 0;
+    font-size: 1.5rem;
   }
 
   .rightArrow {
+    align-self: end;
     color: orange;
     font-size: 1.3rem;
   }

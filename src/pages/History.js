@@ -3,10 +3,6 @@ import styled from "styled-components";
 import HistoryList from "../components/HistoryList";
 import { useHistoryContext } from "../context/history_context";
 
-// TODO: can change status of single list
-// TODO: lists categorized by date (months)
-// TODO: update history when new list is saved
-
 function History() {
   const { historyLists } = useHistoryContext();
 
