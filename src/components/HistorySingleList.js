@@ -8,7 +8,7 @@ import DisplayItems from "./DisplayItems";
 import { AiFillCaretDown } from "react-icons/ai";
 
 function HistorySingleList() {
-  const { historyLists, historyLoading } = useHistoryContext();
+  const { historyLists, historyLoading, changeStatus } = useHistoryContext();
   const { id } = useParams();
 
   const singleList = historyLists.find((list) => list._id === id);
@@ -19,7 +19,8 @@ function HistorySingleList() {
   }
 
   const onChange = (event) => {
-    console.log(event.target.value);
+    const status = event.target.value;
+    changeStatus(id, status);
   };
 
   return (
@@ -33,7 +34,12 @@ function HistorySingleList() {
         <h2>{name}</h2>
         <div className="status">
           <AiFillCaretDown className="status__icon" />
-          <select name="status" className="status__select" onChange={onChange}>
+          <select
+            name="status"
+            className="status__select"
+            onChange={onChange}
+            value={status}
+          >
             <option value="active">active</option>
             <option value="completed">completed</option>
             <option value="cancelled">cancelled</option>

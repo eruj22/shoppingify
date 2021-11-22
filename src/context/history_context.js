@@ -24,20 +24,23 @@ export const HistoryProvider = ({ children }) => {
     }
   };
 
-  // const changeStatus = async (id, status) => {
-  //   await axios.patch(
-  //     `${process.env.REACT_APP_API_URL_HISTORY}${id}`,
-  //     { status }
-  //   );
-  //   dispatch({ type: "HISTORY_CHANGE_STATUS", payload: { id, status } });
-  // };
+  const changeStatus = async (id, status) => {
+    const currentList = state.historyLists.filter((list) => list._id === id);
+    currentList[0].status = status;
+
+    await axios.patch(
+      `${process.env.REACT_APP_API_URL_HISTORY}${id}`,
+      currentList[0]
+    );
+    dispatch({ type: "HISTORY_CHANGE_STATUS", payload: { id, status } });
+  };
 
   useEffect(() => {
     fetchHistory(process.env.REACT_APP_API_URL_HISTORY);
   }, []);
 
   return (
-    <HistoryContext.Provider value={{ ...state }}>
+    <HistoryContext.Provider value={{ ...state, changeStatus }}>
       {children}
     </HistoryContext.Provider>
   );

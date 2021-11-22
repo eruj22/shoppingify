@@ -6,12 +6,12 @@ import DisplayDate from "./DisplayDate";
 import DisplayStatus from "./DisplayStatus";
 
 function HistoryList(props) {
-  const { name, status, updatedAt, _id } = props;
+  const { name, status, createdAt, _id } = props;
 
   return (
     <Wrapper>
       <h2 className="name">{name}</h2>
-      <DisplayDate date={updatedAt} />
+      <DisplayDate date={createdAt} />
       <DisplayStatus status={status} />
 
       <Link to={_id} className="rightArrow">
