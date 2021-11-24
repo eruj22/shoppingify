@@ -51,7 +51,6 @@ export const AppProvider = ({ children }) => {
   const deleteItem = async (id) => {
     await axios
       .delete(`${process.env.REACT_APP_API_URL}${id}`)
-      .then((res) => console.log(res.status))
       .catch((error) => console.log(error));
     dispatch({ type: "DELETE_ITEM", payload: id });
   };

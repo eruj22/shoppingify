@@ -12,6 +12,11 @@ function DisplayItemDetails() {
   const { addToList } = useListContext();
   const { name, image, category, note, _id } = singleItemDetails[0];
 
+  const handleDelete = () => {
+    deleteItem(_id);
+    closeItemDetails();
+  };
+
   return (
     <Wrapper>
       <button onClick={closeItemDetails} className="close">
@@ -31,13 +36,7 @@ function DisplayItemDetails() {
       <p className="name">{note ? note : ""}</p>
 
       <div className="buttons">
-        <BtnSecondary
-          text="delete"
-          onClick={() => {
-            deleteItem(_id);
-            closeItemDetails();
-          }}
-        />
+        <BtnSecondary text="delete" onClick={handleDelete} />
 
         <BtnPrimary
           text="Add to list"
@@ -76,6 +75,7 @@ const Wrapper = styled.aside`
   .image {
     width: 100%;
     max-width: 300px;
+    max-height: 300px;
     border-radius: 0.5rem;
     margin: 1rem 0;
   }
@@ -87,7 +87,7 @@ const Wrapper = styled.aside`
   }
 
   .name {
-    font-size: 2rem;
+    font-size: 1.4rem;
     font-weight: bold;
     margin: 0.5rem 0 1.5rem;
   }

@@ -4,8 +4,6 @@ import BtnPrimary from "./BtnPrimary";
 import { IoMdClose } from "react-icons/io";
 
 function Modal({ onClick, isOpen, close, text }) {
-  console.log("open", isOpen);
-
   return (
     <Wrapper className={isOpen && "flex"}>
       <div className="modal">
