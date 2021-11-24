@@ -4,7 +4,6 @@ import logo from "../assets/logo.svg";
 import { Link } from "react-router-dom";
 import { MdRestaurantMenu } from "react-icons/md";
 import { RiArrowGoBackLine } from "react-icons/ri";
-import { GoGraph } from "react-icons/go";
 
 function Navigation() {
   return (
@@ -18,9 +17,6 @@ function Navigation() {
         </Link>
         <Link to="/history" className="links__item">
           <RiArrowGoBackLine />
-        </Link>
-        <Link to="#" className="links__item">
-          <GoGraph />
         </Link>
       </div>
       <div></div>
