@@ -11,7 +11,6 @@ const Wrapper = styled.button`
 
   background-color: orange;
   color: #fff;
-  margin-left: 1rem;
 `;
 
 export default BtnPrimary;

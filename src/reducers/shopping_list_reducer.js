@@ -1,15 +1,11 @@
 const list_reducer = (state, action) => {
   if (action.type === "ADD_ITEM_TO_LIST") {
-    const { amount, name, category } = action.payload;
-    const tempItem = state.shoppingList.find(
-      (item) =>
-        item.name === action.payload.name &&
-        item.category === action.payload.category
-    );
+    const { amount, _id } = action.payload;
+    const tempItem = state.shoppingList.find((item) => item._id === _id);
 
     if (tempItem) {
       const tempList = state.shoppingList.map((listItem) => {
-        if (listItem.name === name && listItem.category === category) {
+        if (listItem._id === _id) {
           let newAmount = listItem.amount + amount;
           return { ...listItem, amount: newAmount };
         } else {

@@ -17,6 +17,22 @@ const reducer = (state, action) => {
     return { ...state, itemsLoading: false, items: action.payload };
   }
 
+  if (action.type === "DELETE_ITEM") {
+    const tempItems = state.items.filter((item) => item._id !== action.payload);
+    return { ...state, items: tempItems };
+  }
+
+  if (action.type === "OPEN_ITEM_DETAILS") {
+    const selectedItem = state.items.filter(
+      (item) => item._id === action.payload
+    );
+    return { ...state, showItemDetails: true, singleItemDetails: selectedItem };
+  }
+
+  if (action.type === "CLOSE_ITEM_DETAILS") {
+    return { ...state, showItemDetails: false };
+  }
+
   if (action.type === "ADD_ITEM_TO_LIST") {
     return { ...state };
   }

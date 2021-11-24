@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { BsArrowLeft } from "react-icons/bs";
 import { Link, useParams, useNavigate } from "react-router-dom";
@@ -7,10 +7,13 @@ import DisplayDate from "./DisplayDate";
 import DisplayItems from "./DisplayItems";
 import { AiFillCaretDown } from "react-icons/ai";
 import BtnSecondary from "./BtnSecondary";
+import Modal from "./Modal";
 
 function HistorySingleList() {
   const { historyLists, historyLoading, changeStatus, deleteList } =
     useHistoryContext();
+  const [isModalDeleteList, setIsModalDeleteList] = useState(false);
+
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -20,6 +23,9 @@ function HistorySingleList() {
   if (historyLoading) {
     return <h2>Loading...</h2>;
   }
+
+  const openModal = () => setIsModalDeleteList(true);
+  const closeModal = () => setIsModalDeleteList(false);
 
   const onChange = (event) => {
     const status = event.target.value;
@@ -33,6 +39,13 @@ function HistorySingleList() {
 
   return (
     <Wrapper>
+      <Modal
+        onClick={handleDelete}
+        isOpen={isModalDeleteList}
+        close={closeModal}
+        text="Do you really want to delete shopping list?"
+      />
+
       <Link to="/history" className="back">
         <BsArrowLeft className="back__icon" />
         back
@@ -41,7 +54,7 @@ function HistorySingleList() {
       <div className="flex">
         <h2 className="name">{name}</h2>
 
-        <BtnSecondary text="delete list" onClick={handleDelete} />
+        <BtnSecondary text="delete list" onClick={openModal} />
 
         <div className="status">
           <AiFillCaretDown className="status__icon" />

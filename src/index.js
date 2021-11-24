@@ -8,6 +8,7 @@ import { AppProvider } from "./context/context";
 import { ListProvider } from "./context/shopping_list_context";
 import { HistoryProvider } from "./context/history_context";
 import HistorySingleList from "./components/HistorySingleList";
+import Home from "./pages/Home";
 
 const rootElement = document.getElementById("root");
 render(
@@ -16,6 +17,7 @@ render(
       <HistoryProvider>
         <BrowserRouter>
           <Routes>
+            <Route path="/" element={<Home />} />
             <Route path="/" element={<App />}>
               <Route path="items" element={<Items />} />
               <Route path="history" element={<History />} />

@@ -40,8 +40,12 @@ function AddNewItem({ setShowAddItem }) {
       const validateUrl = image.match(
         /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=+$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=+$,\w]+@)[A-Za-z0-9.-]+)((?:\/[+~%/.\w-_]*)?\??(?:[-+=&;%@.\w_]*)#?(?:[\w]*))?)/
       );
-      errors.image = validateUrl ? null : "Input right image url";
+
+      if (!validateUrl) {
+        errors.image = "Input right image url";
+      }
     }
+
     setAddItemError(errors);
 
     if (Object.keys(errors).length > 0) {
@@ -57,11 +61,11 @@ function AddNewItem({ setShowAddItem }) {
 
     axios
       .post(process.env.REACT_APP_API_URL, sendItem)
-      .then((res) => console.log(res))
       .catch((err) => console.log(err));
     setAddNewItem({ name: "", note: "", image: "", category: "" });
 
     notifySuccess("Successfully added item");
+    setShowAddItem(false);
     againFetchItems();
   };
 
@@ -208,6 +212,15 @@ const Wrapper = styled.aside`
     display: flex;
     justify-content: center;
     margin-top: auto;
+  }
+
+  @media (max-width: 1200px) {
+    z-index: 2;
+    background-color: #fff;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
   }
 `;
 
