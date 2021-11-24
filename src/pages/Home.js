@@ -11,7 +11,7 @@ function Home() {
   return (
     <Wrapper>
       <GlobalStyles />
-      <Navigation />
+      <Navigation hideBurger={true} />
 
       <div className="hero">
         <div className="hero__text">

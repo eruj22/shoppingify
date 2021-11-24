@@ -5,9 +5,10 @@ import AddNewItem from "../components/AddNewItem";
 import DisplayItemDetails from "../components/DisplayItemDetails";
 import ShoppingList from "../components/ShoppingList";
 import { useAppContext } from "../context/context";
+import { GrFormClose } from "react-icons/gr";
 
 function RightPreview() {
-  const { showItemDetails } = useAppContext();
+  const { showItemDetails, isSidebarOpen, closeSidebar } = useAppContext();
   const [showAddItem, setShowAddItem] = useState(false);
 
   if (showItemDetails) {
@@ -19,7 +20,7 @@ function RightPreview() {
   }
 
   return (
-    <Wrapper>
+    <Wrapper style={isSidebarOpen ? { display: "block" } : { display: "none" }}>
       <div className="addItem">
         <div className="addItem__icon">
           <img src={sauce} alt="" />
@@ -36,12 +37,17 @@ function RightPreview() {
       </div>
 
       <ShoppingList />
+
+      <button className="btnClose" onClick={closeSidebar}>
+        <GrFormClose className="btnClose__icon" />
+      </button>
     </Wrapper>
   );
 }
 
 const Wrapper = styled.aside`
   background-color: beige;
+  z-index: 2;
   padding: 2rem;
   min-width: 330px;
   width: 20vw;
@@ -63,6 +69,30 @@ const Wrapper = styled.aside`
     &__button {
       padding: 0.5rem 1rem;
       border-radius: 0.5rem;
+    }
+  }
+
+  .btnClose {
+    display: none;
+  }
+
+  @media (max-width: 1200px) {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+
+    .btnClose {
+      display: block;
+      z-index: 3;
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background-color: transparent;
+
+      &__icon {
+        font-size: 1.5rem;
+      }
     }
   }
 `;

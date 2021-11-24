@@ -213,6 +213,15 @@ const Wrapper = styled.aside`
     justify-content: center;
     margin-top: auto;
   }
+
+  @media (max-width: 1200px) {
+    z-index: 2;
+    background-color: #fff;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+  }
 `;
 
 export default AddNewItem;
