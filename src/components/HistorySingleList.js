@@ -12,7 +12,7 @@ import Modal from "./Modal";
 function HistorySingleList() {
   const { historyLists, historyLoading, changeStatus, deleteList } =
     useHistoryContext();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalDeleteList, setIsModalDeleteList] = useState(false);
 
   const navigate = useNavigate();
   const { id } = useParams();
@@ -24,8 +24,8 @@ function HistorySingleList() {
     return <h2>Loading...</h2>;
   }
 
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const openModal = () => setIsModalDeleteList(true);
+  const closeModal = () => setIsModalDeleteList(false);
 
   const onChange = (event) => {
     const status = event.target.value;
@@ -41,8 +41,9 @@ function HistorySingleList() {
     <Wrapper>
       <Modal
         onClick={handleDelete}
-        isModalOpen={isModalOpen}
-        closeModal={closeModal}
+        isOpen={isModalDeleteList}
+        close={closeModal}
+        text="Do you really want to delete shopping list?"
       />
 
       <Link to="/history" className="back">

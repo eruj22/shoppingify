@@ -16,8 +16,8 @@ function DisplayItems({ items }) {
             </div>
             <div className="items">
               {filterByCategory(items, category).map((item) => {
-                const { name } = item;
-                return <DisplaySingleItem key={name} item={item} />;
+                const { _id } = item;
+                return <DisplaySingleItem key={_id} item={item} />;
               })}
             </div>
           </div>

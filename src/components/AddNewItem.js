@@ -57,11 +57,11 @@ function AddNewItem({ setShowAddItem }) {
 
     axios
       .post(process.env.REACT_APP_API_URL, sendItem)
-      .then((res) => console.log(res))
       .catch((err) => console.log(err));
     setAddNewItem({ name: "", note: "", image: "", category: "" });
 
     notifySuccess("Successfully added item");
+    setShowAddItem(false);
     againFetchItems();
   };
 

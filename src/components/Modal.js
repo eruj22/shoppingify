@@ -3,17 +3,17 @@ import styled from "styled-components";
 import BtnPrimary from "./BtnPrimary";
 import { IoMdClose } from "react-icons/io";
 
-function Modal({ onClick, isModalOpen, closeModal }) {
+function Modal({ onClick, isOpen, close, text }) {
+  console.log("open", isOpen);
+
   return (
-    <Wrapper className={isModalOpen ? "flex" : ""}>
+    <Wrapper className={isOpen && "flex"}>
       <div className="modal">
-        <h2 className="modal__title">
-          Do you really want to delete shopping list?
-        </h2>
+        <h2 className="modal__title">{text}</h2>
 
         <BtnPrimary text={"delete"} onClick={onClick} />
 
-        <button onClick={closeModal}>
+        <button onClick={close}>
           <IoMdClose className="modal__icon" />
         </button>
       </div>
@@ -22,7 +22,7 @@ function Modal({ onClick, isModalOpen, closeModal }) {
 }
 
 const Wrapper = styled.div`
-  z-index: 10;
+  z-index: 100;
   background-color: rgba(0, 0, 0, 0.6);
   position: fixed;
   top: 0;

@@ -25,7 +25,9 @@ function ShoppingList() {
     e.preventDefault();
 
     const name = shoppingListName.trim();
-    const items = shoppingList;
+    const items = shoppingList.map((item) => {
+      return { ...item, checked: false };
+    });
 
     let errors = {};
     if (name.length < 2) {

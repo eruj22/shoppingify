@@ -17,11 +17,11 @@ const ListContext = React.createContext();
 export const ListProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const addToList = (name, note, image, category) => {
+  const addToList = (name, note, image, category, _id) => {
     const amount = 1;
     dispatch({
       type: "ADD_ITEM_TO_LIST",
-      payload: { name, note, image, category, amount },
+      payload: { name, note, image, category, amount, _id },
     });
   };
 

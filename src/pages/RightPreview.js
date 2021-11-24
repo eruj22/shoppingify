@@ -2,10 +2,17 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import sauce from "../assets/sauce.svg";
 import AddNewItem from "../components/AddNewItem";
+import DisplayItemDetails from "../components/DisplayItemDetails";
 import ShoppingList from "../components/ShoppingList";
+import { useAppContext } from "../context/context";
 
 function RightPreview() {
+  const { showItemDetails } = useAppContext();
   const [showAddItem, setShowAddItem] = useState(false);
+
+  if (showItemDetails) {
+    return <DisplayItemDetails />;
+  }
 
   if (showAddItem) {
     return <AddNewItem setShowAddItem={setShowAddItem} />;

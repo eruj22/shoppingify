@@ -7,6 +7,8 @@ const initialState = {
   itemsLoading: false,
   itemsError: false,
   items: [],
+  showItemDetails: false,
+  singleItemDetails: [],
 };
 
 const AppContext = React.createContext();
@@ -38,13 +40,37 @@ export const AppProvider = ({ children }) => {
     }
   };
 
+  const openItemDetails = (id) => {
+    dispatch({ type: "OPEN_ITEM_DETAILS", payload: id });
+  };
+
+  const closeItemDetails = () => {
+    dispatch({ type: "CLOSE_ITEM_DETAILS" });
+  };
+
+  const deleteItem = async (id) => {
+    await axios
+      .delete(`${process.env.REACT_APP_API_URL}${id}`)
+      .then((res) => console.log(res.status))
+      .catch((error) => console.log(error));
+    dispatch({ type: "DELETE_ITEM", payload: id });
+  };
+
   useEffect(() => {
     fetchItems(process.env.REACT_APP_API_URL);
   }, [fetchAgain]);
 
   return (
     <AppContext.Provider
-      value={{ ...state, openSidebar, closeSidebar, againFetchItems }}
+      value={{
+        ...state,
+        openSidebar,
+        closeSidebar,
+        againFetchItems,
+        openItemDetails,
+        closeItemDetails,
+        deleteItem,
+      }}
     >
       {children}
     </AppContext.Provider>
