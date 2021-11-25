@@ -43,6 +43,10 @@ const Wrapper = styled.section`
   height: 100vh;
   width: 100vw;
 
+  img {
+    animation: showGradually 1.5s ease-out 0s 1 normal forwards;
+  }
+
   .hero {
     justify-content: center;
     width: 100%;
@@ -54,15 +58,21 @@ const Wrapper = styled.section`
     }
 
     &__title {
+      animation: slideInFromLeft 1s ease-out 0s 1 normal forwards;
+      opacity: 0;
       font-size: 4rem;
       margin: 20% 0 3rem;
     }
 
     &__subtitle {
       font-size: 1.5rem;
+      opacity: 0;
+      animation: slideInFromLeft 1s ease-out 0.5s 1 normal forwards;
     }
 
     &__cta {
+      animation: slideInFromLeft 1s ease-out 1s 1 normal forwards;
+      opacity: 0;
       font-size: 1.1rem;
       margin-top: 3rem;
       color: orange;
@@ -77,6 +87,26 @@ const Wrapper = styled.section`
 
     &__imageMobile {
       display: none;
+    }
+  }
+
+  @keyframes slideInFromLeft {
+    0% {
+      transform: translateX(-15%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes showGradually {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
     }
   }
 
