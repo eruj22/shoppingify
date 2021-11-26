@@ -27,9 +27,9 @@ function DisplayItems({ singleList, items }) {
     if (singleList) {
       toggleItemStatus(singleList._id, newItems);
 
-      const findUnchecked = newItems.find((item) => item.checked === false);
+      const findChecked = newItems.every((item) => item.checked === true);
 
-      if (findUnchecked === undefined) {
+      if (findChecked) {
         changeStatus(singleList._id, "completed");
       }
     }
