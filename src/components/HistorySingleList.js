@@ -71,7 +71,7 @@ function HistorySingleList() {
         </div>
       </div>
       <DisplayDate date={updatedAt} />
-      <DisplayItems items={items} />
+      <DisplayItems items={items} singleList={singleList} />
     </Wrapper>
   );
 }

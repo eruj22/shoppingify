@@ -1,10 +1,40 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import DisplaySingleItem from "./DisplaySingleItem";
 import { filterByCategory, getUniqueCategories } from "../utils/functions";
+import { useHistoryContext } from "../context/history_context";
 
-function DisplayItems({ items }) {
+function DisplayItems({ singleList, items }) {
+  const { toggleItemStatus, changeStatus } = useHistoryContext();
   const uniqueCategories = getUniqueCategories(items);
+  const [newItems, setNewItems] = useState(singleList && singleList.items);
+
+  const handleToggle = (itemId, isItemChecked) => {
+    setNewItems(
+      newItems.map((item) => {
+        if (item._id === itemId && isItemChecked === true) {
+          return { ...item, checked: true };
+        } else if (item._id === itemId && isItemChecked === false) {
+          return { ...item, checked: false };
+        } else {
+          return item;
+        }
+      })
+    );
+  };
+
+  useEffect(() => {
+    if (singleList) {
+      toggleItemStatus(singleList._id, newItems);
+
+      const findUnchecked = newItems.find((item) => item.checked === false);
+
+      if (findUnchecked === undefined) {
+        changeStatus(singleList._id, "completed");
+      }
+    }
+    // eslint-disable-next-line
+  }, [newItems]);
 
   return (
     <Wrapper>
@@ -15,10 +45,21 @@ function DisplayItems({ items }) {
               <h3 className="category__title">{category}</h3>
             </div>
             <div className="items">
-              {filterByCategory(items, category).map((item) => {
-                const { _id } = item;
-                return <DisplaySingleItem key={_id} item={item} />;
-              })}
+              {singleList
+                ? filterByCategory(items, category).map((item) => {
+                    const { _id } = item;
+                    return (
+                      <DisplaySingleItem
+                        key={_id}
+                        item={item}
+                        handleToggle={handleToggle}
+                      />
+                    );
+                  })
+                : filterByCategory(items, category).map((item) => {
+                    const { _id } = item;
+                    return <DisplaySingleItem key={_id} item={item} />;
+                  })}
             </div>
           </div>
         );

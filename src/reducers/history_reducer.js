@@ -9,13 +9,14 @@ const reducer = (state, action) => {
   }
 
   if (action.type === "HISTORY_CHANGE_STATUS") {
-    const { id, status } = action.payload;
-    const currentList = state.historyLists.filter((list) => list._id === id);
-    currentList.status = status;
     return { ...state };
   }
 
   if (action.type === "FETCH_AGAIN") {
+    return { ...state };
+  }
+
+  if (action.type === "CHANGE_ITEM_STATUS") {
     return { ...state };
   }
 
