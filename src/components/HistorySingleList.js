@@ -5,9 +5,9 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import { useHistoryContext } from "../context/history_context";
 import DisplayDate from "./DisplayDate";
 import DisplayItems from "./DisplayItems";
-import { AiFillCaretDown } from "react-icons/ai";
 import BtnSecondary from "./BtnSecondary";
 import Modal from "./Modal";
+import Select from "./Select";
 
 function HistorySingleList() {
   const { historyLists, historyLoading, changeStatus, deleteList } =
@@ -56,22 +56,10 @@ function HistorySingleList() {
 
         <BtnSecondary text="delete list" onClick={openModal} />
 
-        <div className="status">
-          <AiFillCaretDown className="status__icon" />
-          <select
-            name="status"
-            className="status__select"
-            onChange={onChange}
-            value={status}
-          >
-            <option value="active">active</option>
-            <option value="completed">completed</option>
-            <option value="cancelled">cancelled</option>
-          </select>
-        </div>
+        <Select onChange={onChange} value={status} />
       </div>
       <DisplayDate date={updatedAt} />
-      <DisplayItems items={items} />
+      <DisplayItems items={items} singleList={singleList} />
     </Wrapper>
   );
 }
@@ -101,31 +89,6 @@ const Wrapper = styled.main`
   .flex {
     display: flex;
     align-items: center;
-  }
-
-  .status {
-    position: relative;
-
-    &__icon {
-      position: absolute;
-      top: 0.5rem;
-      right: 0.5rem;
-      pointer-events: none;
-    }
-
-    &__select {
-      min-width: 120px;
-      margin-left: auto;
-      appearance: none;
-      background-color: transparent;
-      border: 1px solid #222;
-      border-radius: 0.5rem;
-      background-color: #fff;
-      padding: 0.3rem;
-      font-family: inherit;
-      font-size: inherit;
-      cursor: pointer;
-    }
   }
 `;
 

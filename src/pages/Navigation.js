@@ -6,32 +6,39 @@ import { MdRestaurantMenu } from "react-icons/md";
 import { RiArrowGoBackLine } from "react-icons/ri";
 import { useAppContext } from "../context/context";
 import { AiOutlineMenu } from "react-icons/ai";
+import ReactTooltip from "react-tooltip";
 
 function Navigation({ hideBurger = false }) {
   const { openSidebar } = useAppContext();
 
   return (
-    <Wrapper>
-      <Link to="/" className="logo">
-        <img src={logo} alt="" />
-      </Link>
-      <div className="links">
-        <Link to="/items" className="links__item">
-          <MdRestaurantMenu />
+    <>
+      <ReactTooltip effect="solid" />
+      <Wrapper>
+        <Link to="/" className="logo">
+          <img src={logo} alt="" />
         </Link>
-        <Link to="/history" className="links__item">
-          <RiArrowGoBackLine />
-        </Link>
-      </div>
-      <div></div>
 
-      <button
-        className={`btnOpen ${hideBurger && "hide"}`}
-        onClick={openSidebar}
-      >
-        <AiOutlineMenu className="btnOpen__icon" />
-      </button>
-    </Wrapper>
+        <div className="links">
+          <Link to="/items" data-tip="items" className="links__item">
+            <MdRestaurantMenu />
+          </Link>
+
+          <Link to="/history" data-tip="history" className="links__item">
+            <RiArrowGoBackLine />
+          </Link>
+        </div>
+
+        <div></div>
+
+        <button
+          className={`btnOpen ${hideBurger && "hide"}`}
+          onClick={openSidebar}
+        >
+          <AiOutlineMenu className="btnOpen__icon" />
+        </button>
+      </Wrapper>
+    </>
   );
 }
 

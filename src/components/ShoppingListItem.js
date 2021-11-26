@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { AiOutlinePlus } from "react-icons/ai";
 import { AiOutlineMinus } from "react-icons/ai";
@@ -18,9 +18,14 @@ function ShoppingListItem({ item, canUpdateList }) {
     toggleAmount(name, "dec");
   };
 
+  useEffect(() => {
+    setIsBtnClicked(false);
+  }, [canUpdateList]);
+
   return (
     <Wrapper>
       <span className={isBtnClicked ? "name margin-top" : "name"}>{name}</span>
+
       <button
         className={isBtnClicked ? "btn--hide" : "btn btn--transparent"}
         onClick={() => setIsBtnClicked(true)}
@@ -28,16 +33,20 @@ function ShoppingListItem({ item, canUpdateList }) {
       >
         {amount} pcs
       </button>
+
       <div className={isBtnClicked ? "buttons" : "buttons--hide"}>
         <button className="btnTrash" onClick={() => removeItem(name)}>
           <FiTrash2 />
         </button>
+
         <button className="btnMinus" onClick={decrease}>
           <AiOutlineMinus />
         </button>
+
         <button className={"btn"} onClick={() => setIsBtnClicked(false)}>
           {amount} pcs
         </button>
+
         <button className="btnPlus" onClick={increase}>
           <AiOutlinePlus />
         </button>

@@ -39,7 +39,6 @@ export const HistoryProvider = ({ children }) => {
   const deleteList = async (id) => {
     await axios
       .delete(`${process.env.REACT_APP_API_URL_HISTORY}${id}`)
-      .then((res) => console.log(res.status))
       .catch((error) => console.log(error));
     dispatch({ type: "HISTORY_DELETE_LIST", payload: id });
   };
@@ -49,13 +48,32 @@ export const HistoryProvider = ({ children }) => {
     dispatch({ type: "FETCH_AGAIN" });
   };
 
+  const toggleItemStatus = async (listId, updatedItems) => {
+    const currentList = state.historyLists.filter(
+      (list) => list._id === listId
+    );
+    currentList[0].items = updatedItems;
+
+    await axios.patch(
+      `${process.env.REACT_APP_API_URL_HISTORY}${listId}`,
+      currentList[0]
+    );
+    dispatch({ type: "CHANGE_ITEM_STATUS", payload: { listId, updatedItems } });
+  };
+
   useEffect(() => {
     fetchHistory(process.env.REACT_APP_API_URL_HISTORY);
   }, [fetchAgain]);
 
   return (
     <HistoryContext.Provider
-      value={{ ...state, changeStatus, againFetchHistoryLists, deleteList }}
+      value={{
+        ...state,
+        changeStatus,
+        againFetchHistoryLists,
+        deleteList,
+        toggleItemStatus,
+      }}
     >
       {children}
     </HistoryContext.Provider>
