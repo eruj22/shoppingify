@@ -88,6 +88,10 @@ const Wrapper = styled.section`
     &__imageMobile {
       display: none;
     }
+
+    &__image {
+      width: 450px;
+    }
   }
 
   @keyframes slideInFromLeft {
