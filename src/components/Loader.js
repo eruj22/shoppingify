@@ -1,15 +1,15 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 function Loader() {
   return (
-    <Wrapper>
-      <div className="lds-ring">
+    <Wrapper className="lds-ring">
+      <ShowLoader>
         <div></div>
         <div></div>
         <div></div>
         <div></div>
-      </div>
+      </ShowLoader>
     </Wrapper>
   );
 }
@@ -18,13 +18,24 @@ const Wrapper = styled.div`
   margin-top: 10%;
   display: flex;
   justify-content: center;
-  .lds-ring {
-    display: inline-block;
-    position: relative;
-    width: 80px;
-    height: 80px;
+`;
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
   }
-  .lds-ring div {
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+const ShowLoader = styled.div`
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+
+  div {
     box-sizing: border-box;
     display: block;
     position: absolute;
@@ -33,24 +44,17 @@ const Wrapper = styled.div`
     margin: 8px;
     border: 8px solid #fff;
     border-radius: 50%;
-    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    animation: ${rotate} 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
     border-color: #fff transparent transparent transparent;
-  }
-  .lds-ring div:nth-child(1) {
-    animation-delay: -0.45s;
-  }
-  .lds-ring div:nth-child(2) {
-    animation-delay: -0.3s;
-  }
-  .lds-ring div:nth-child(3) {
-    animation-delay: -0.15s;
-  }
-  @keyframes lds-ring {
-    0% {
-      transform: rotate(0deg);
+
+    &:nth-child(1) {
+      animation-delay: -0.45s;
     }
-    100% {
-      transform: rotate(360deg);
+    &:nth-child(2) {
+      animation-delay: -0.3s;
+    }
+    &:nth-child(3) {
+      animation-delay: -0.15s;
     }
   }
 `;

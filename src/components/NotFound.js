@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 function NotFound() {
   return (
     <Wrapper>
-      <h1 className="title">404 Error</h1>
-      <p className="subtitle">The site you are looking for isn't found</p>
+      <Title>404 Error</Title>
+      <Subtitle>The site you are looking for isn't found</Subtitle>
       <Link to="/" className="link">
         Go back to the main page
       </Link>
@@ -21,15 +21,6 @@ const Wrapper = styled.section`
   margin-top: 10%;
   color: #333;
 
-  .title {
-    font-size: 5rem;
-    margin: 1rem 0;
-  }
-
-  .subtitle {
-    font-size: 1.3rem;
-  }
-
   .link {
     text-decoration: none;
     border-radius: 0.5rem;
@@ -38,6 +29,15 @@ const Wrapper = styled.section`
     background-color: orange;
     color: #fff;
   }
+`;
+
+const Title = styled.h1`
+  font-size: 5rem;
+  margin: 1rem 0;
+`;
+
+const Subtitle = styled.p`
+  font-size: 1.3rem;
 `;
 
 export default NotFound;

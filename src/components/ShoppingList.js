@@ -73,42 +73,40 @@ function ShoppingList() {
         }}
       />
 
-      <div className="list">
-        <header className="list__header">
-          <h2 className={canUpdateList ? "hide" : "list__title"}>
+      <List>
+        <header className="header">
+          <h2 className={canUpdateList ? "hide" : "title"}>
             {shoppingListName ? shoppingListName : " "}
           </h2>
           <input
-            className={canUpdateList ? "list__input" : "hide"}
+            className={canUpdateList ? "input" : "hide"}
             placeholder="list name"
             value={shoppingListName}
             onChange={(e) => setShoppingListName(e.target.value)}
           />
 
           <BsFillPencilFill
-            className={canUpdateList ? "hide" : "list__editIcon"}
+            className={canUpdateList ? "hide" : "editIcon"}
             onClick={() => setCanUpdateList(true)}
           />
           <BsCheckLg
-            className={canUpdateList ? "list__editIcon" : "hide"}
+            className={canUpdateList ? "editIcon" : "hide"}
             onClick={() => setCanUpdateList(false)}
           />
           {shoppingListError.name && (
-            <span className="list__error error--name">
-              {shoppingListError.name}
-            </span>
+            <span className="error error--name">{shoppingListError.name}</span>
           )}
         </header>
-        <div className="list__main">
+        <div className="main">
           {shoppingListError.items && (
-            <span className="list__error error--items">
+            <span className="error error--items">
               {shoppingListError.items}
             </span>
           )}
           {uniqueCategories.map((category, index) => {
             return (
               <div key={index}>
-                <span className="list__categoryName">{category}</span>
+                <span className="categoryName">{category}</span>
                 {filterByCategory(shoppingList, category).map((item, index) => {
                   return (
                     <ShoppingListItem
@@ -122,10 +120,10 @@ function ShoppingList() {
             );
           })}
         </div>
-      </div>
+      </List>
 
-      <div className="listAction">
-        <div className="listAction__container">
+      <ListAction>
+        <div className="container">
           <BtnSecondary
             text={"clear list"}
             onClick={() => {
@@ -136,69 +134,12 @@ function ShoppingList() {
           />
           <BtnPrimary text={"save list"} onClick={handleSubmit} />
         </div>
-      </div>
+      </ListAction>
     </Wrapper>
   );
 }
 
 const Wrapper = styled.div`
-  .list {
-    &__header {
-      position: relative;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    &__input {
-      font-size: 1.4rem;
-      width: 80%;
-      margin: 1.5rem 0;
-      padding: 0.3rem;
-    }
-
-    &__error {
-      z-index: 3;
-      padding: 0.4rem;
-      border-radius: 0.5rem;
-      color: red;
-      font-weight: bold;
-      top: 4rem;
-      background-color: #fff;
-    }
-
-    &__categoryName {
-      display: block;
-      padding-bottom: 0.2rem;
-      border-bottom: 1px solid gray;
-      color: gray;
-    }
-
-    &__title {
-      margin-right: 1rem;
-    }
-
-    &__editIcon {
-      cursor: pointer;
-    }
-  }
-
-  .listAction {
-    background-color: #fff;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    padding: 1.5rem 2rem;
-    min-width: 330px;
-    width: 16.3vw;
-
-    &__container {
-      position: relative;
-      display: flex;
-      justify-content: center;
-    }
-  }
-
   .hide {
     display: none;
   }
@@ -210,6 +151,63 @@ const Wrapper = styled.div`
   .error--items {
     display: inline-block;
     transform: translateY(4rem);
+  }
+`;
+
+const List = styled.div`
+  .header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .input {
+    font-size: 1.4rem;
+    width: 80%;
+    margin: 1.5rem 0;
+    padding: 0.3rem;
+  }
+
+  .error {
+    z-index: 3;
+    padding: 0.4rem;
+    border-radius: 0.5rem;
+    color: red;
+    font-weight: bold;
+    top: 4rem;
+    background-color: #fff;
+  }
+
+  .categoryName {
+    display: block;
+    padding-bottom: 0.2rem;
+    border-bottom: 1px solid gray;
+    color: gray;
+  }
+
+  .title {
+    margin-right: 1rem;
+  }
+
+  .editIcon {
+    cursor: pointer;
+  }
+`;
+
+const ListAction = styled.div`
+  background-color: #fff;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 1.5rem 2rem;
+  min-width: 330px;
+  width: 16.3vw;
+
+  .container {
+    position: relative;
+    display: flex;
+    justify-content: center;
   }
 `;
 

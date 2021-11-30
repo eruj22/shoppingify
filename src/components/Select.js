@@ -6,7 +6,8 @@ function Select({ onChange, value }) {
   return (
     <Wrapper>
       <AiFillCaretDown className="icon" />
-      <select
+
+      <SelectContainer
         name="status"
         className="select"
         onChange={onChange}
@@ -16,7 +17,7 @@ function Select({ onChange, value }) {
         <option value="active">active</option>
         <option value="completed">completed</option>
         <option value="cancelled">cancelled</option>
-      </select>
+      </SelectContainer>
     </Wrapper>
   );
 }
@@ -30,20 +31,20 @@ const Wrapper = styled.div`
     right: 0.5rem;
     pointer-events: none;
   }
+`;
 
-  .select {
-    min-width: 120px;
-    margin-left: auto;
-    appearance: none;
-    background-color: transparent;
-    border: 1px solid #222;
-    border-radius: 0.5rem;
-    background-color: #fff;
-    padding: 0.3rem;
-    font-family: inherit;
-    font-size: inherit;
-    cursor: pointer;
-  }
+const SelectContainer = styled.select`
+  min-width: 120px;
+  margin-left: auto;
+  appearance: none;
+  background-color: transparent;
+  border: 1px solid #222;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  padding: 0.3rem;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
 `;
 
 export default Select;

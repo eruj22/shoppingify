@@ -37,14 +37,13 @@ function DisplayItems({ singleList, items }) {
   }, [newItems]);
 
   return (
-    <Wrapper>
+    <div>
       {uniqueCategories.map((category, index) => {
         return (
           <div key={index}>
-            <div className="category">
-              <h3 className="category__title">{category}</h3>
-            </div>
-            <div className="items">
+            <CategoryTitle>{category}</CategoryTitle>
+
+            <Items>
               {singleList
                 ? filterByCategory(items, category).map((item) => {
                     const { _id } = item;
@@ -60,49 +59,38 @@ function DisplayItems({ singleList, items }) {
                     const { _id } = item;
                     return <DisplaySingleItem key={_id} item={item} />;
                   })}
-            </div>
+            </Items>
           </div>
         );
       })}
-    </Wrapper>
+    </div>
   );
 }
 
-const Wrapper = styled.div`
-  .category {
-    &__title {
-      margin: 2rem 0 0.7rem;
-    }
-  }
-  .items {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 1rem;
-  }
+const Items = styled.div`
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
 
   @media (max-width: 1920px) {
-    .items {
-      grid-template-columns: repeat(4, 1fr);
-    }
+    grid-template-columns: repeat(4, 1fr);
   }
 
   @media (max-width: 1600px) {
-    .items {
-      grid-template-columns: repeat(3, 1fr);
-    }
+    grid-template-columns: repeat(3, 1fr);
   }
 
   @media (max-width: 900px) {
-    .items {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    grid-template-columns: repeat(2, 1fr);
   }
 
   @media (max-width: 750px) {
-    .items {
-      grid-template-columns: 1fr;
-    }
+    grid-template-columns: 1fr;
   }
+`;
+
+const CategoryTitle = styled.h3`
+  margin: 2rem 0 0.7rem;
 `;
 
 export default DisplayItems;

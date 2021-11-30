@@ -27,23 +27,23 @@ function Items() {
 
   return (
     <Wrapper>
-      <header className="header">
-        <h1 className="header__title">
-          <span className="header--textOrange">Shoppingify</span> allows you to
-          take your shopping list wherever you go
+      <Header>
+        <h1 className="title">
+          <span className="textOrange">Shoppingify</span> allows you to take
+          your shopping list wherever you go
         </h1>
-        <div className="search">
-          <AiOutlineSearch className="search__icon" />
+        <Search>
+          <AiOutlineSearch className="icon" />
           <input
-            className="search__input"
+            className="input"
             type="search"
             placeholder="search item"
             aria-label="search item"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
-        </div>
-      </header>
+        </Search>
+      </Header>
 
       {itemsLoading ? (
         <Loader />
@@ -62,60 +62,58 @@ const Wrapper = styled.main`
   background-color: #e8f7fc;
   overflow: auto;
 
-  .header {
-    display: flex;
-
-    &__title {
-      margin-top: 0;
-      max-width: 850px;
-    }
-
-    &--textOrange {
-      color: orange;
-    }
-  }
-
-  .search {
-    position: relative;
-    margin-left: 4rem;
-
-    &__input {
-      font-size: 1rem;
-      padding: 0.8rem 0.5rem 0.8rem 2.5rem;
-      min-width: 220px;
-      width: 20vw;
-    }
-
-    &__icon {
-      position: absolute;
-      font-size: 1.2rem;
-      top: 0.75rem;
-      left: 0.7rem;
-    }
-  }
-
   .displayError {
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
-  @media (max-width: 1400px) {
-    .header {
-      flex-direction: column;
-    }
-
-    .search {
-      margin-left: 0;
-
-      &__input {
-        width: 30vw;
-      }
-    }
-  }
-
   @media (max-width: 750px) {
     padding: 2rem 3rem;
+  }
+`;
+
+const Header = styled.header`
+  display: flex;
+
+  .title {
+    margin-top: 0;
+    max-width: 850px;
+  }
+
+  .textOrange {
+    color: orange;
+  }
+
+  @media (max-width: 1400px) {
+    flex-direction: column;
+  }
+`;
+
+const Search = styled.div`
+  position: relative;
+  margin-left: 4rem;
+
+  .input {
+    font-size: 1rem;
+    padding: 0.8rem 0.5rem 0.8rem 2.5rem;
+    min-width: 220px;
+    width: 20vw;
+  }
+
+  .icon {
+    position: absolute;
+    font-size: 1.2rem;
+    top: 0.75rem;
+    left: 0.7rem;
+  }
+
+  @media (max-width: 1400px) {
+    margin-left: 0;
+
+    .input {
+      width: 30vw;
+    }
   }
 `;
 

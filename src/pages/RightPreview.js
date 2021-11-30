@@ -21,20 +21,17 @@ function RightPreview() {
 
   return (
     <Wrapper style={isSidebarOpen ? { display: "block" } : { display: "none" }}>
-      <div className="addItem">
-        <div className="addItem__icon">
+      <AddItem>
+        <div className="icon">
           <img src={sauce} alt="" />
         </div>
-        <div className="addItem__text">
-          <p className="addItem__paragraph">Didn't find what you need?</p>
-          <button
-            className="addItem__button"
-            onClick={() => setShowAddItem(true)}
-          >
+        <div className="text">
+          <p className="paragraph">Didn't find what you need?</p>
+          <button className="button" onClick={() => setShowAddItem(true)}>
             Add Item
           </button>
         </div>
-      </div>
+      </AddItem>
 
       <ShoppingList />
 
@@ -52,25 +49,6 @@ const Wrapper = styled.aside`
   min-width: 330px;
   width: 20vw;
   overflow: auto;
-
-  .addItem {
-    background-color: rgb(128, 72, 91);
-    display: flex;
-    gap: 1rem;
-    border-radius: 1rem;
-    color: #fff;
-    height: 125px;
-    padding: 0 0.5rem;
-
-    &__icon {
-      transform: translateY(-1.2rem);
-    }
-
-    &__button {
-      padding: 0.5rem 1rem;
-      border-radius: 0.5rem;
-    }
-  }
 
   .btnClose {
     display: none;
@@ -94,6 +72,25 @@ const Wrapper = styled.aside`
         font-size: 1.5rem;
       }
     }
+  }
+`;
+
+const AddItem = styled.div`
+  background-color: rgb(128, 72, 91);
+  display: flex;
+  gap: 1rem;
+  border-radius: 1rem;
+  color: #fff;
+  height: 125px;
+  padding: 0 0.5rem;
+
+  .icon {
+    transform: translateY(-1.2rem);
+  }
+
+  .button {
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
   }
 `;
 

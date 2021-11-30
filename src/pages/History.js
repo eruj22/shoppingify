@@ -28,11 +28,11 @@ function History() {
 
   return (
     <Wrapper>
-      <div className="header">
-        <h1 className="header__title">Shopping history</h1>
+      <Header>
+        <h1>Shopping history</h1>
 
         <Select onChange={(event) => handleChange(event)} />
-      </div>
+      </Header>
       {filterLists.map((list) => {
         return <HistoryList key={list._id} {...list} />;
       })}
@@ -45,12 +45,12 @@ const Wrapper = styled.main`
   padding: 2rem 5rem;
   background-color: #e8f7fc;
   overflow: auto;
+`;
 
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 export default History;

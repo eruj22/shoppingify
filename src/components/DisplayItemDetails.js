@@ -26,16 +26,16 @@ function DisplayItemDetails() {
 
       <img src={image ? image : NoImage} className="image" alt={name} />
 
-      <p className="label">Name</p>
-      <p className="name">{name}</p>
+      <Label>Name</Label>
+      <Name>{name}</Name>
 
-      <p className="label">Category</p>
-      <p className="name">{category}</p>
+      <Label>Category</Label>
+      <Name>{category}</Name>
 
-      <p className="label">Note</p>
-      <p className="name">{note ? note : ""}</p>
+      <Label>Note</Label>
+      <Name>{note ? note : ""}</Name>
 
-      <div className="buttons">
+      <Buttons>
         <BtnSecondary text="delete" onClick={handleDelete} />
 
         <BtnPrimary
@@ -45,7 +45,7 @@ function DisplayItemDetails() {
             closeItemDetails();
           }}
         />
-      </div>
+      </Buttons>
     </Wrapper>
   );
 }
@@ -80,24 +80,6 @@ const Wrapper = styled.aside`
     margin: 1rem 0;
   }
 
-  .label {
-    margin: 0;
-    color: gray;
-    font-size: 0.9rem;
-  }
-
-  .name {
-    font-size: 1.4rem;
-    font-weight: bold;
-    margin: 0.5rem 0 1.5rem;
-  }
-
-  .buttons {
-    display: flex;
-    justify-content: center;
-    margin-top: auto;
-  }
-
   @media (max-width: 1200px) {
     z-index: 2;
     background-color: #fff;
@@ -106,6 +88,24 @@ const Wrapper = styled.aside`
     right: 0;
     bottom: 0;
   }
+`;
+
+const Buttons = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: auto;
+`;
+
+const Label = styled.label`
+  margin: 0;
+  color: gray;
+  font-size: 0.9rem;
+`;
+
+const Name = styled.p`
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin: 0.5rem 0 1.5rem;
 `;
 
 export default DisplayItemDetails;

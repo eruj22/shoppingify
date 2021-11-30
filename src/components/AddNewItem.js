@@ -82,14 +82,12 @@ function AddNewItem({ setShowAddItem }) {
       />
 
       <h2 className="title">Add a new item</h2>
-      <form className="form">
-        <label className="form__label" htmlFor="name">
+      <Form>
+        <label className="label" htmlFor="name">
           Name
         </label>
         <input
-          className={
-            addItemError.name ? "form__input form__errorInput" : "form__input"
-          }
+          className={addItemError.name ? "input errorInput" : "input"}
           type="text"
           id="name"
           placeholder="Enter a name"
@@ -99,14 +97,14 @@ function AddNewItem({ setShowAddItem }) {
           }
         />
         {addItemError.name && (
-          <span className="form__errorText">{addItemError.name}</span>
+          <span className="errorText">{addItemError.name}</span>
         )}
 
-        <label className="form__label" htmlFor="note">
+        <label className="label" htmlFor="note">
           Note (optional)
         </label>
         <textarea
-          className="form__input form--textarea"
+          className="input textarea"
           id="note"
           rows="6"
           placeholder="Enter a note"
@@ -116,13 +114,11 @@ function AddNewItem({ setShowAddItem }) {
           }
         />
 
-        <label className="form__label" htmlFor="image">
+        <label className="label" htmlFor="image">
           Image (optional)
         </label>
         <input
-          className={
-            addItemError.image ? "form__input form__errorInput" : "form__input"
-          }
+          className={addItemError.image ? "input errorInput" : "input"}
           type="text"
           id="image"
           placeholder="Enter a image url"
@@ -132,18 +128,14 @@ function AddNewItem({ setShowAddItem }) {
           }
         />
         {addItemError.image && (
-          <span className="form__errorText">{addItemError.image}</span>
+          <span className="errorText">{addItemError.image}</span>
         )}
 
-        <label htmlFor="category" className="form__label">
+        <label htmlFor="category" className="label">
           Category
         </label>
         <input
-          className={
-            addItemError.category
-              ? "form__input form__errorInput"
-              : "form__input"
-          }
+          className={addItemError.category ? "input errorInput" : "input"}
           name="category"
           type="text"
           list="category"
@@ -158,14 +150,14 @@ function AddNewItem({ setShowAddItem }) {
           })}
         </datalist>
         {addItemError.category && (
-          <span className="form__errorText">{addItemError.category}</span>
+          <span className="errorText">{addItemError.category}</span>
         )}
-      </form>
+      </Form>
 
-      <div className="buttons">
+      <Buttons>
         <BtnSecondary text={"cancel"} onClick={() => setShowAddItem(false)} />
         <BtnPrimary text={"save"} onClick={handleSubmit} />
-      </div>
+      </Buttons>
     </Wrapper>
   );
 }
@@ -177,43 +169,6 @@ const Wrapper = styled.aside`
   display: flex;
   flex-direction: column;
 
-  .form {
-    &__input {
-      display: block;
-      width: 100%;
-      border: 2px solid lightgray;
-      border-radius: 0.5rem;
-      padding: 0.7rem 0.5rem;
-    }
-
-    &__label {
-      display: block;
-      margin: 1.5rem 0 0.6rem;
-    }
-
-    &--textarea {
-      resize: none;
-    }
-
-    &__errorText {
-      display: block;
-      font-size: 0.9rem;
-      font-weight: bold;
-      color: red;
-      margin-top: 0.3rem;
-    }
-
-    &__errorInput {
-      border: 2px solid red;
-    }
-  }
-
-  .buttons {
-    display: flex;
-    justify-content: center;
-    margin-top: auto;
-  }
-
   @media (max-width: 1200px) {
     z-index: 2;
     background-color: #fff;
@@ -222,6 +177,43 @@ const Wrapper = styled.aside`
     right: 0;
     bottom: 0;
   }
+`;
+
+const Form = styled.form`
+  .input {
+    display: block;
+    width: 100%;
+    border: 2px solid lightgray;
+    border-radius: 0.5rem;
+    padding: 0.7rem 0.5rem;
+  }
+
+  .label {
+    display: block;
+    margin: 1.5rem 0 0.6rem;
+  }
+
+  .textarea {
+    resize: none;
+  }
+
+  .errorText {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: red;
+    margin-top: 0.3rem;
+  }
+
+  .errorInput {
+    border: 2px solid red;
+  }
+`;
+
+const Buttons = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: auto;
 `;
 
 export default AddNewItem;

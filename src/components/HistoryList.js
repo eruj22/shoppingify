@@ -10,7 +10,7 @@ function HistoryList(props) {
 
   return (
     <Wrapper>
-      <h2 className="name">{name}</h2>
+      <Name>{name}</Name>
       <DisplayDate date={createdAt} />
       <DisplayStatus status={status} />
 
@@ -30,16 +30,16 @@ const Wrapper = styled.div`
   padding: 1rem;
   margin: 1rem 0;
 
-  h2 {
-    margin: 0;
-    font-size: 1.5rem;
-  }
-
   .rightArrow {
     align-self: end;
     color: orange;
     font-size: 1.3rem;
   }
+`;
+
+const Name = styled.h2`
+  margin: 0;
+  font-size: 1.5rem;
 `;
 
 export default HistoryList;

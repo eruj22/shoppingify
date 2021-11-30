@@ -6,15 +6,15 @@ import { IoMdClose } from "react-icons/io";
 function Modal({ onClick, isOpen, close, text }) {
   return (
     <Wrapper className={isOpen && "flex"}>
-      <div className="modal">
-        <h2 className="modal__title">{text}</h2>
+      <ModalContainer>
+        <h2 className="title">{text}</h2>
 
         <BtnPrimary text={"delete"} onClick={onClick} />
 
-        <button onClick={close}>
-          <IoMdClose className="modal__icon" />
+        <button onClick={close} className="close">
+          <IoMdClose />
         </button>
-      </div>
+      </ModalContainer>
     </Wrapper>
   );
 }
@@ -34,23 +34,23 @@ const Wrapper = styled.div`
   .flex {
     display: flex;
   }
+`;
 
-  .modal {
-    position: relative;
-    background-color: #fff;
-    padding: 3rem;
-    border-radius: 0.5rem;
+const ModalContainer = styled.div`
+  position: relative;
+  background-color: #fff;
+  padding: 3rem;
+  border-radius: 0.5rem;
 
-    &__title {
-      margin-top: 0;
-    }
+  .title {
+    margin-top: 0;
+  }
 
-    &__icon {
-      font-size: 2rem;
-      position: absolute;
-      top: 0.5rem;
-      right: 0.5rem;
-    }
+  .close {
+    font-size: 2rem;
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
   }
 `;
 
