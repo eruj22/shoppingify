@@ -22,6 +22,10 @@ const Wrapper = styled.div`
     margin-right: 0.4rem;
     font-size: 1.5rem;
   }
+
+  @media (max-width: 650px) {
+    margin-left: 0;
+  }
 `;
 
 export default DisplayDate;

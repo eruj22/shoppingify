@@ -45,12 +45,21 @@ const Wrapper = styled.main`
   padding: 2rem 5rem;
   background-color: #e8f7fc;
   overflow: auto;
+
+  @media (max-width: 768px) {
+    padding: 2rem 1.5rem;
+  }
 `;
 
 const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: start;
+  }
 `;
 
 export default History;

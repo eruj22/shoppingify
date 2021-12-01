@@ -16,6 +16,7 @@ const Wrapper = styled.div`
     padding: 0.1rem 0.4rem;
     border: solid 1px;
     border-radius: 0.5rem;
+    width: fit-content;
   }
 
   .active {

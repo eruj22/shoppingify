@@ -69,7 +69,7 @@ const Wrapper = styled.main`
   }
 
   @media (max-width: 750px) {
-    padding: 2rem 3rem;
+    padding: 2rem 1.5rem;
   }
 `;
 
@@ -87,6 +87,12 @@ const Header = styled.header`
 
   @media (max-width: 1400px) {
     flex-direction: column;
+  }
+
+  @media (max-width: 768px) {
+    .title {
+      font-size: 1.7rem;
+    }
   }
 `;
 

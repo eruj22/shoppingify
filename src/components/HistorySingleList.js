@@ -90,6 +90,20 @@ const Wrapper = styled.main`
     display: flex;
     align-items: center;
   }
+
+  @media (max-width: 768px) {
+    padding: 2rem 1.5rem;
+
+    .name {
+      margin-bottom: 0.5rem;
+    }
+
+    .flex {
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+  }
 `;
 
 export default HistorySingleList;

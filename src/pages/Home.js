@@ -127,10 +127,17 @@ const Hero = styled.div`
       max-width: 600px;
     }
   }
+
+  @media (max-width: 400px) {
+    .title {
+      font-size: 2.25rem;
+    }
+  }
 `;
 
 const ImageDesktop = styled.img`
-  width: 450px;
+  max-width: 40%;
+  object-fit: cover;
 
   @media (max-width: 1200px) {
     display: none;

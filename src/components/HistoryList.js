@@ -35,6 +35,24 @@ const Wrapper = styled.div`
     color: orange;
     font-size: 1.3rem;
   }
+
+  @media (max-width: 1000px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    .rightArrow {
+      justify-self: end;
+    }
+  }
+
+  @media (max-width: 650px) {
+    grid-template-columns: 1fr;
+    justify-items: center;
+
+    .rightArrow {
+      justify-self: center;
+    }
+  }
 `;
 
 const Name = styled.h2`
