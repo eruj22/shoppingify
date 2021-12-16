@@ -1,4 +1,4 @@
-# News Personal Dashboard
+# Shoppingify
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
