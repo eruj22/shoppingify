@@ -1,5 +1,7 @@
 # Shoppingify
 
+![shoppingify](https://user-images.githubusercontent.com/80893722/144384080-d96bb3f9-68f6-4d66-b281-437a10b9fd2c.png)
+
 <!-- TABLE OF CONTENTS -->
 <details open="open">
   <summary>Table of Contents</summary>
